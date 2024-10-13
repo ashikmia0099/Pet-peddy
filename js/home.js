@@ -48,7 +48,7 @@ const DisplayCardData = (data) => {
             </div>
            
             <div class="flex  gap-2 pt-3 justify-between">
-              <button class="btn "><i class="fa-regular fa-thumbs-up text-2xl	font-bold"></i></button>
+              <button class="btn like-button"><i class="fa-regular fa-thumbs-up text-2xl	font-bold"></i></button>
               <button class="btn text-[#0E7A81] text-lg	font-bold">Adopt</button>
               <button class="btn text-[#0E7A81] text-lg	font-bold">Details</button>
             </div>
@@ -62,10 +62,25 @@ const DisplayCardData = (data) => {
         cardContainer.append(card)
 
 
+        // like imge card show
 
-    })
+        const SelectedImageContainer = document.getElementById('selected-images-container');
+        const LikeButton = card.querySelector('.like-button');
 
-}
+        LikeButton.addEventListener('click', () => {
+
+            const selectedImage = document.createElement('img');
+            selectedImage.src = item.image;
+            selectedImage.alt = item.pet_name;
+            selectedImage.classList.add('rounded-md', 'p-2');
+        
+            SelectedImageContainer.appendChild(selectedImage)
+            
+        })
+
+    });
+
+};
 
 
 
