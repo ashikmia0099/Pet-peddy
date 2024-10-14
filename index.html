@@ -126,9 +126,6 @@
 
 
     
-      
-  <!-- full banner section -->
-
 
   <div>
 
@@ -170,7 +167,7 @@
 
   <div class="mt-10 mx-[5%] flex items-center justify-between">
     <h1 class=" text-2xl font-bold">Best Deal For you</h1>
-    <button class="btn bg-[#0E7A81] text-white text-l mt-5 px-5 pt-2 pb-2">Sort By Price</button>
+    <button id="Sort-button" class="btn bg-[#0E7A81] text-white text-l mt-5 px-5 pt-2 pb-2">Sort By Price</button>
     
 
   </div>
@@ -202,6 +199,8 @@
   </div>
 
   
+
+  
   
 
 
@@ -214,22 +213,23 @@
 
 
 <!-- Open model section -->
-
-<!-- 
-<dialog  id="my_modal_1" class="hidden m-auto flex justify-center items-center object-center inset-y-0 bg-transparent	">
+ 
+<!-- Open the modal using ID.showModal() method -->
+<button id="showModelData" class="btn hidden" onclick="my_modal_5.showModal()">open modal</button>
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
-    <h3 class="text-3xl text-center text-white font-bold">Hello!</h3>
-    <img src="assets/coin.png" alt="" class="text-center m-auto mt-2">
-    <p class="py-4 text-white text-center">You Have Donated For Human Kind</p>
-    <p class="text-lg text-white text-center">Successfully</p>
-    <div class="modal-action">
+   <div id="modal-content">
+
+   </div>
+    <div class="modal-action ">
       <form method="dialog">
-        <button id="close_button_one" class="btn text-white">Close</button>
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
       </form>
     </div>
   </div>
-</dialog >
-   -->
+</dialog>
+   
 
 
     <!-- footer -->
