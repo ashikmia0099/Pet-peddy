@@ -107,6 +107,27 @@ const DisplayCardData = (data) => {
     const ShowSortCard = (cardData) => {
         cardContainer.innerHTML = '';
 
+        if(data.length == 0){
+
+            cardContainer.innerHTML = 
+            `
+            
+
+        <div class="text-center m-auto"> 
+            <img src="assets/error.webp" alt="" class="m-auto h-32 w-32">
+            <h1 class="text-4xl font-bold pt-3">No Information Available</h1>
+            <p class=" m-auto pt-3 ">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
+                its layout. The point of using Lorem Ipsum is that it has a.</p>
+        </div>
+            
+            
+            `
+            
+            ;
+            return
+
+        }
+
         cardData.forEach((item) =>{
             // console.log(item)
     
@@ -263,15 +284,17 @@ const DispalyCategoryData = (categoriesData) => {
 
     categoriesData.forEach((item) => {
 
-        const button = document.createElement('div');
-        button.innerHTML = 
+        // console.log(item)
+        const buttonContainer = document.createElement('div');
+        
+        buttonContainer.innerHTML = 
         
         `
 
-        <button class="btn btn-outline btn-info  text-white text-xl mt-5 px-10 pt-2 pb-2"> <img src=${item.category_icon} class="h-7 w-7" alt="">${item.category} </button>
+        <button id="btn-${item.category}" onclick='LoadCategoryVideo("${item.category}")' class="btn btn-outline btn-info  text-white text-xl mt-5 px-10 pt-2 pb-2 categorybutton"> <img src=${item.category_icon} class="h-7 w-7" alt="">${item.category} </button>
         
         `;
-        categoryContainer.append(button);
+        categoryContainer.append(buttonContainer);
 
     })
 
@@ -280,9 +303,56 @@ const DispalyCategoryData = (categoriesData) => {
 }
 
 
+// // load category data by category id
+
+
+const LoadCategoryVideo = async (category) => {
+    try {
+       
+        const response = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
+        const res = await response.json();
+        
+        console.log(res.data);
+        DisplayCardData(res.data); 
+
+        removeActiveClass();
+
+        const activeBtn = document.getElementById(`btn-${category}`);
+        activeBtn.classList.add("rounded-full", 'bg-[#E6F1F2]');
+
+    } 
+    catch (error) {
+        console.log('Error fetching data', error);
+    }
+};
+
+
+
+// const LoadCategoryVideo = (category) => {
+    
+
+//     fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
+//     .then((res) => res.json())
+//     .then((data) => console.log(data.data))
+//     .catch((error) => console.log(error))
+
+// }
+
+
 
 
 // Adopt button data
+
+
+// remove active button categorybutton
+
+const removeActiveClass = () => {
+    const buttons = document.getElementsByClassName("categorybutton");
+    console.log(buttons);
+    for (let btn of buttons) {
+      btn.classList.remove("rounded-full", 'bg-[#E6F1F2]');
+    }
+  };
 
 
 
@@ -393,3 +463,20 @@ const AdoptButton = () => {
 //     "vaccinated_status": "Fully",
 //     "pet_name": "Mia"
 // }
+
+
+
+
+
+// {
+//     "petId": 1,
+//     "breed": "Golden Retriever",
+//     "category": "Dog",
+//     "date_of_birth": "2023-01-15",
+//     "price": 1200,
+//     "image": "https://i.ibb.co.com/p0w744T/pet-1.jpg",
+//     "gender": "Male",
+//     "pet_details": "This friendly male Golden Retriever is energetic and loyal, making him a perfect companion for families. Born on January 15, 2023, he enjoys playing outdoors and is especially great with children. Fully vaccinated, he's ready to join your family and bring endless joy. Priced at $1200, he offers love, loyalty, and a lively spirit for those seeking a playful yet gentle dog.",
+//     "vaccinated_status": "Fully",
+//     "pet_name": "Sunny"
+//   },
