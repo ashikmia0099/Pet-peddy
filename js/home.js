@@ -133,7 +133,7 @@ const DisplayCardData = (data) => {
                
                 <div class="flex  gap-2 pt-3 justify-between">
                   <button class="btn like-button"><i class="fa-regular fa-thumbs-up text-2xl font-bold"></i></button>
-                  <button class="btn text-[#0E7A81] text-lg font-bold">Adopt</button>
+                  <button id="adopt-button" onclick="AdoptButton()" class="btn text-[#0E7A81] text-lg font-bold">Adopt</button>
                   <button onclick="LoadDeails('${item.petId}')" class="btn text-[#0E7A81] text-lg font-bold">Details</button>
                 </div>
               </div>
@@ -279,6 +279,69 @@ const DispalyCategoryData = (categoriesData) => {
 
 }
 
+
+
+
+// Adopt button data
+
+
+
+
+const AdoptButton = () => {
+    // console.log('Adopt Button');
+
+    const modal = document.getElementById('my_modal_1');
+    const TimeContainer = document.getElementById('CoundownModel');
+
+    modal.showModal();
+
+    let counter = 3
+
+    TimeContainer.innerHTML = 
+    
+    `
+
+     <h1 class="text-center text-3xl font-bold pb-3">Congrates</h1>
+      <h1 class="text-center text-xl font-bold pb-3">Adeption Process is start for your pet</h1>
+      <h1 class="text-center">
+        <span class="countdown font-mono text-6xl m-auto">
+          <span style="--value:${counter};" class="text-center m-auto"></span>
+          </span>
+      </h1>
+
+
+    `;
+    document.getElementById('ShowCountData').click();
+
+    
+
+    const CountDownIntarval = setInterval(() => {
+        counter--;
+
+        TimeContainer.innerHTML = 
+    
+        `
+
+        <h1 class="text-center text-3xl font-bold pb-3">Congrates</h1>
+        <h1 class="text-center text-xl font-bold pb-3">Adeption Process is start for your pet</h1>
+        <h1 class="text-center">
+            <span class="countdown font-mono text-6xl m-auto">
+            <span style="--value:${counter};" class="text-center m-auto"></span>
+            </span>
+        </h1>
+
+
+        `;
+
+        if(counter <= 0){
+            clearInterval(CountDownIntarval);
+            modal.close();
+        }
+
+    }, 3000);
+
+
+}
 
 
 
